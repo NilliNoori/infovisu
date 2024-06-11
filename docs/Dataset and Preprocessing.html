@@ -406,6 +406,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">Data Cleaning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-phase-renaming-and-restructuring-columns">First Phase: Renaming and Restructuring Columns</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-phase-merging-and-normalizing">Second Phase: Merging and Normalizing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-phase-selecting-relevant-variables">Third Phase: Selecting Relevant Variables</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-descriptions">Variable Descriptions</a></li>
@@ -438,14 +439,18 @@ document.write(`
 <section id="data-cleaning">
 <h2>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Link to this heading">#</a></h2>
 <p>We researched online and found the <a class="reference external" href="https://globalnutritionreport.org/reports/2021-global-nutrition-report/dataset-and-metadata/">Global Nutrition Report 2021 - Dataset and Metadata</a>
-, which included multiple datasets in the file <code class="docutils literal notranslate"><span class="pre">2021_Global_Nutrition_Report_Dataset_6YAamkd.xlsx</span></code>. From this report, we selected and merged the following relevant datasets: <code class="docutils literal notranslate"><span class="pre">country_dietary_needs.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">country_economics.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">country_adult.xlsx</span></code>, and <code class="docutils literal notranslate"><span class="pre">country_policy.xlsx</span></code>. In addition to these, we incorporated the <a class="reference external" href="https://www.kaggle.com/datasets/mariaren/covid19-healthy-diet-dataset">COVID-19 Healthy Diet Dataset from Kaggle</a>. These datasets provide comprehensive information on dietary needs, economic and demographic data, adult-related data, policy measures, and fat supply quantities for various countries.</p>
+, which included multiple datasets in the file <code class="docutils literal notranslate"><span class="pre">2021_Global_Nutrition_Report_Dataset_6YAamkd.xlsx</span></code>. From this report, we selected and merged the following relevant datasets: <code class="docutils literal notranslate"><span class="pre">country_dietary_needs.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">country_economics.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">country_adult.xlsx</span></code>, and <code class="docutils literal notranslate"><span class="pre">country_policy.xlsx</span></code>. In addition to these, we incorporated the <a class="reference external" href="https://www.kaggle.com/datasets/mariaren/covid19-healthy-diet-dataset">COVID-19 Healthy Diet Dataset from Kaggle</a>. These datasets provide comprehensive information on dietary needs, economic and demographic data, adult obesity rates, policy measures, and fat supply quantities in foods consumed for various countries.</p>
 <section id="first-phase-renaming-and-restructuring-columns">
 <h3>First Phase: Renaming and Restructuring Columns<a class="headerlink" href="#first-phase-renaming-and-restructuring-columns" title="Link to this heading">#</a></h3>
 <p>In the first phase, we addressed column conflicts by adding unique suffixes to the columns of each dataset. This ensured that there were no conflicting column names during the merge. We then read each dataset separately using the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> library in Python.</p>
 </section>
 <section id="second-phase-merging-and-normalizing">
 <h3>Second Phase: Merging and Normalizing<a class="headerlink" href="#second-phase-merging-and-normalizing" title="Link to this heading">#</a></h3>
-<p>In the second phase, we merged the datasets based on the common columns <code class="docutils literal notranslate"><span class="pre">iso3</span></code> and <code class="docutils literal notranslate"><span class="pre">country</span></code>. To remove duplicates and normalize the data, we aggregated numerical columns by taking their means and retained the first value for categorical columns. This allowed us to obtain a single row per country, containing all relevant merged information.</p>
+<p>In the second phase, we merged the datasets based on the common column<code class="docutils literal notranslate"><span class="pre">country</span></code>. To remove duplicates and normalize the data, we aggregated numerical columns by taking their means and retained the first value for categorical columns. This allowed us to obtain a single row per country, containing all relevant merged information.</p>
+</section>
+<section id="third-phase-selecting-relevant-variables">
+<h3>Third Phase: Selecting Relevant Variables<a class="headerlink" href="#third-phase-selecting-relevant-variables" title="Link to this heading">#</a></h3>
+<p>In the third phase, we focused on selecting only the relevant variables that align with our perspectives and arguments. This involved filtering the dataset to retain columns that provide insights into dietary habits, national policies, consumption of processed foods, and socio-economic factors. The selected columns were then saved into a new cleaned dataset.</p>
 </section>
 </section>
 <section id="variable-descriptions">
@@ -454,8 +459,8 @@ document.write(`
 <ul class="simple">
 <li><p><strong>Dietary-related variables</strong>: such as Fruit, Vegetables, Legumes, Nuts, Whole grains, Fish, Dairy, Red meat.</p></li>
 <li><p><strong>Economic and demographic variables</strong>: such as Population, GDP, etc.</p></li>
-<li><p><strong>Adult-related variables</strong>: such as Age, BMI, etc.</p></li>
-<li><p><strong>Policy-related variables</strong>: such as policy measures like salt policy, sugar tax, etc.</p></li>
+<li><p><strong>Adult-obesity variables</strong>: such as Obesity Rates, Risk Factor for Underweight/Overweight Adults,  etc.</p></li>
+<li><p><strong>Policy-related variables</strong>: such as policy measures like Salt Policy, Sugar Tax, etc.</p></li>
 <li><p><strong>Fat-related variables</strong>: such as Alcoholic Beverages, Animal Products, Animal fats, etc.</p></li>
 </ul>
 </section>
@@ -471,7 +476,7 @@ document.write(`
 </section>
 <section id="final-result">
 <h1>Final Result<a class="headerlink" href="#final-result" title="Link to this heading">#</a></h1>
-<p>The resulting dataset provides a comprehensive view of various aspects of dietary and policy information per country, and is now ready for further analysis and visualization.</p>
+<p>The resulting has dataset 54 variables and 523 rows and provides a comprehensive view of various aspects of dietary and policy information per country, and is now ready for further analysis and visualization.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -534,6 +539,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">Data Cleaning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-phase-renaming-and-restructuring-columns">First Phase: Renaming and Restructuring Columns</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-phase-merging-and-normalizing">Second Phase: Merging and Normalizing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-phase-selecting-relevant-variables">Third Phase: Selecting Relevant Variables</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-descriptions">Variable Descriptions</a></li>
