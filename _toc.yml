@@ -5,3 +5,5 @@ format: jb-book
 root: docs/Introduction
 chapters:
 - file: docs/Dataset and Preprocessing
+- file: docs/Data Story
+- file: docs/Work Distribution
