@@ -4,5 +4,4 @@
 format: jb-book
 root: docs/Introduction
 chapters:
-- file: docs/Introduction
 - file: docs/Dataset and Preprocessing
